@@ -877,9 +877,9 @@
           选择药渣类型并输入日产量，系统将根据药性属性、关键成分与资源化路径能耗特征自动生成推荐方案。
         </p>
 
-        <div class="field">
+        <div class="field fade-in">
           <label for="residueType">药渣类型</label>
-          <div class="combo-box" id="residueTypeCombo">
+          <div class="combo-box" id="residueTypeCombo fade-in">
             <input id="residueType" type="text" autocomplete="off" placeholder="请输入药渣类型或拼音首字母，如 jyh">
             <button class="combo-toggle" id="residueTypeToggle" type="button" aria-label="展开药渣类型选项">▾</button>
             <div class="combo-list" id="residueTypeSuggestions" hidden></div>
@@ -887,15 +887,15 @@
           <div class="hint">支持直接输入中文或拼音首字母筛选，也可点击右侧下拉按钮查看全部药渣类型。</div>
         </div>
 
-        <div class="field">
+        <div class="field fade-in">
           <label for="dailyOutput">日产量（kg）</label>
           <input id="dailyOutput" type="number" min="1" step="1" value="500" placeholder="请输入日产量">
-          <div class="hint">建议输入实际日处理规模，用于估算节能收益与优选倾向。</div>
+          <div class="hint fade-in">建议输入实际日处理规模，用于估算节能收益与优选倾向。</div>
         </div>
 
         <button class="button" id="generateBtn" type="button">生成推荐方案</button>
 
-        <div class="logic-box">
+        <div class="logic-box fade-in">
           <h3>系统决策逻辑</h3>
           <p>
             优先识别药渣的寒热药性与核心成分，再从能耗等级、碳排放、经济价值、节能优势四个维度进行综合评分，
@@ -905,7 +905,7 @@
       </aside>
 
       <section class="panel results" id="results">
-        <div class="placeholder">
+        <div class="placeholder fade-in">
           <div>
             <h2>等待生成智能推荐</h2>
             <p>
@@ -1594,19 +1594,19 @@
 
       results.innerHTML = `
         <div class="summary-grid">
-          <div class="summary-card">
+          <div class="summary-card fade-in">
             <span>药渣类型</span>
             <strong>${type}</strong>
           </div>
-          <div class="summary-card">
+          <div class="summary-card fade-in">
             <span>药性属性</span>
             <strong class="${natureTone(residueInfo.nature)}">${residueInfo.nature}</strong>
           </div>
-          <div class="summary-card">
+          <div class="summary-card fade-in">
             <span>成分特征</span>
             <strong>${residueInfo.feature}</strong>
           </div>
-          <div class="summary-card">
+          <div class="summary-card fade-in">
             <span>日产量</span>
             <strong>${amount.toLocaleString("zh-CN")} kg/日</strong>
           </div>
@@ -1614,29 +1614,29 @@
 
         <div class="highlight">
           <article class="hero-result">
-            <div class="eyebrow">系统综合最优推荐</div>
+            <div class="eyebrow fade-in">系统综合最优推荐</div>
             <h2>${bestRoute.name}</h2>
             <p>${conclusion}</p>
-            <div class="recommend-line">
+            <div class="recommend-line fade-in">
               <strong>推荐理由</strong>
               <span>${residueInfo.note}</span>
             </div>
           </article>
 
           <aside class="insight-card">
-            <div class="insight-item">
+            <div class="insight-item fade-in">
               <span>双维度判断</span>
               <strong>以“${residueInfo.nature}药性 + ${residueInfo.feature}成分”共同驱动资源化路径优选。</strong>
             </div>
-            <div class="insight-item">
+            <div class="insight-item fade-in">
               <span>节能导向</span>
               <strong>${bestRoute.advantage}</strong>
             </div>
-            <div class="insight-item">
+            <div class="insight-item fade-in">
               <span>规模化提示</span>
               <strong>${bestRoute.estimate.carbonReduction}；${bestRoute.estimate.outputValue}。</strong>
             </div>
-            <div class="insight-item">
+            <div class="insight-item fade-in">
               <span>安全判定</span>
               <strong>${isToxic ? "该类型涉及毒性风险，仅允许安全处置，不进入高值利用链。" : "该类型可在控制工艺条件下进行资源化利用。"} </strong>
             </div>
@@ -1646,25 +1646,25 @@
         <div class="route-grid">
           ${routeResults.map((route, index) => `
             <article class="route-card ${index === 0 ? "best" : ""}">
-              <div class="route-top">
+              <div class="route-top fade-in">
                 <h3>${route.name}</h3>
                 <span class="tag">${index === 0 ? "优先推荐" : `方案 ${index + 1}`}</span>
               </div>
               <p class="route-desc">${route.fit}</p>
               <div class="metrics">
-                <div class="metric">
+                <div class="metric fade-in">
                   <span>能耗等级</span>
                   <strong>${route.energy}</strong>
                 </div>
-                <div class="metric">
+                <div class="metric fade-in">
                   <span>碳排放</span>
                   <strong>${route.carbon}</strong>
                 </div>
-                <div class="metric">
+                <div class="metric fade-in">
                   <span>经济价值</span>
                   <strong>${route.value}</strong>
                 </div>
-                <div class="metric">
+                <div class="metric fade-in">
                   <span>综合评分</span>
                   <strong>${route.score}</strong>
                 </div>
@@ -1675,27 +1675,27 @@
           `).join("")}
         </div>
 
-        <div class="analysis-grid">
+        <div class="analysis-grid fade-in">
           <section class="flow-panel">
             <h3>推荐流程示意</h3>
             <p>将“中医辨性”与“工程化节能决策”串联成清晰路径，适合在竞赛答辩中直接说明系统逻辑。</p>
             <div class="process-track">
-              <div class="process-step">
+              <div class="process-step fade-in">
                 <span>01 药性判别</span>
                 <strong>${residueInfo.nature}药性识别</strong>
                 <p>先判断寒、热、平及毒性边界，建立后续资源化路径的安全约束与工艺倾向。</p>
               </div>
-              <div class="process-step">
+              <div class="process-step fade-in">
                 <span>02 成分识别</span>
                 <strong>${residueInfo.feature}特征匹配</strong>
                 <p>依据黄酮、多糖、挥发油、木质素或有机酸等成分类型，筛选更适合的资源化方向。</p>
               </div>
-              <div class="process-step">
+              <div class="process-step fade-in">
                 <span>03 方案比较</span>
                 <strong>能耗 + 碳排 + 经济价值综合评分</strong>
                 <p>对候选路径进行多指标排序，优先保留低温、低碳、稳定且高附加值的路线。</p>
               </div>
-              <div class="process-step">
+              <div class="process-step fade-in">
                 <span>04 输出推荐</span>
                 <strong>${bestRoute.name}</strong>
                 <p>${conclusion}</p>
@@ -1709,14 +1709,14 @@
             <div class="compare-chart">
               ${chartMarkup}
             </div>
-            <div class="compare-note">
+            <div class="compare-note fade-in">
               当前推荐中，<strong>${bestRoute.name}</strong>在 ${routeResults.length} 条候选路径中综合排名第一。
               ${isToxic ? "该类型因存在毒性风险，图表重点用于说明安全处置优先于高值开发。" : "系统优先强调低能耗与低碳排，再兼顾经济回报和处理规模适配性。"}
             </div>
           </section>
         </div>
 
-        <div class="footer-note">
+        <div class="footer-note fade-in">
           说明：本系统为纯前端智能推荐演示页面，依据题设给定规则进行决策排序。展示重点在于体现
           <strong>“寒热药性 + 成分特征”</strong> 的中医特色，以及不同资源化路径在节能、减碳和经济价值上的对比逻辑。
         </div>

@@ -137,6 +137,37 @@
   .fade-in.active {
     transform: translateY(0) !important;
   }
+/* 🔥 下拉菜单固定高度+滚动条 终极优化 */
+.combo-list, .combo-suggestions, [id*="Suggestions"] {
+  /* 固定最大高度，超出就滚动 */
+  max-height: 320px !important;
+  /* 垂直滚动条，内容多了自动出现 */
+  overflow-y: auto !important;
+  /* 保留完整白色背景，彻底不透 */
+  background: #ffffff !important;
+  /* 内边距，让内容不贴边 */
+  padding: 8px 0 !important;
+  /* 圆角，和设计统一 */
+  border-radius: 8px !important;
+  /* 阴影，区分层级 */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
+  /* 锁死最高层级 */
+  z-index: 2147483647 !important;
+  /* 绝对定位，锚定在输入框下方 */
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  width: 100% !important;
+}
+
+/* 美化滚动条，和整体风格统一 */
+.combo-list::-webkit-scrollbar, .combo-suggestions::-webkit-scrollbar {
+  width: 6px !important;
+}
+.combo-list::-webkit-scrollbar-thumb, .combo-suggestions::-webkit-scrollbar-thumb {
+  background: #ccc !important;
+  border-radius: 3px !important;
+}
     :root {
       --bg: #eef6f0;
       --bg-soft: #f7fbf7;

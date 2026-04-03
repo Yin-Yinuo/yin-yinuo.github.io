@@ -15,6 +15,18 @@
       box-shadow: 0 8px 24px rgba(31, 87, 63, 0.15) !important;
       background: rgba(255, 255, 255, 0.96) !important;
     }
+  /* 滚动渐入动画：初始状态 */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+  }
+  /* 滚动到可视区：激活状态 */
+  .fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
     :root {
       --bg: #eef6f0;
       --bg-soft: #f7fbf7;
@@ -1766,5 +1778,21 @@
     generateBtn.addEventListener("click", renderResult);
     renderResult();
   </script>
+<script>
+// 监听滚动，给可见的元素加active，触发动画
+const fadeElements = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      // 动画只触发一次，滑过去就不再重复
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 }); // 元素露出10%就触发动画
+
+// 给所有fade-in元素绑定监听
+fadeElements.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
